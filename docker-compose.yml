@@ -1,0 +1,33 @@
+version: '3.8'
+ 
+services:
+ 
+  postgresql_database:
+    image: postgres:latest
+    environment:
+      - POSTGRES_USER=yaniv
+      - POSTGRES_PASSWORD=yaniv
+      - POSTGRES_DB=tweetsDb
+    ports:
+      - "5432:5432"
+    restart: always
+    volumes:
+      - database-data:/var/lib/postgresql/data/
+     
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=yaniv@test.org
+      - PGADMIN_DEFAULT_PASSWORD=yaniv
+    ports:
+      - "5050:80"
+    restart: always
+    volumes:
+      - pgadmin:/root/.pgadmin
+ 
+volumes:
+  database-data:
+  pgadmin:
+  
+
+              
